@@ -7,7 +7,7 @@ import '@/components';
 import '@/directives';
 
 // 引入插件
-// import router from '@/plugins/router';
+import router from '@/plugins/router';
 import store from '@/plugins/store';
 import inject from '@/plugins/inject';
 
@@ -16,7 +16,6 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 
 import App from './App.vue';
-import router from './router';
 import './registerServiceWorker';
 
 Vue.config.productionTip = false;
