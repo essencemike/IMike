@@ -65,6 +65,9 @@ function errorHandler(error: any) {
   } else if (error.status) {
     // 根据不同的状态码，返回不同的错误信息
     return error.status;
+  } else if (error.response.status) {
+    // 根据不同的状态码，返回不同的错误信息
+    return error.response.status;
   }
 
   return '未知错误';

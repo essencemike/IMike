@@ -9,7 +9,6 @@ export const API_DEFAULT_CONFIG = {
   mockBaseURL: '',
   mock: true,
   debug: false,
-  sep: '/',
 };
 
 export const CONST_DEFAULT_CONFIG = {

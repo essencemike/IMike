@@ -8,3 +8,4 @@ import Vue from 'vue';
  * 所有公共组件统一在此处引入注册
  */
 Vue.component('HelloWorld', () => import('@/components/HelloWorld/index.vue'));
+Vue.component('EuiEditor', () => import('@/components/EuiEditor/index.vue'));

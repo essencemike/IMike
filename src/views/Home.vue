@@ -1,5 +1,5 @@
 <template>
-  <div class="home" v-mousewheel="scroll">
+  <div class="home">
     <img src="../assets/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
   </div>
@@ -9,7 +9,5 @@
 import { Component, Vue } from 'vue-property-decorator';
 
 @Component
-export default class Home extends Vue {
-  public scroll() {}
-}
+export default class Home extends Vue {}
 </script>
