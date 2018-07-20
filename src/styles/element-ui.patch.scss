@@ -1,0 +1,10 @@
+@import 'variables';
+
+/*------------scrollbar --------------*/
+.scrollbar-wrapper {
+  overflow-x: hidden !important;
+
+  .el-scrollbar__view {
+    height: 100%;
+  }
+}

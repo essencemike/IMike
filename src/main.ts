@@ -1,5 +1,14 @@
 import Vue from 'vue';
 
+// 引入第三方组件库
+import * as ElementUI from 'element-ui';
+
+// 引入样式
+import 'normalize.css';
+import 'font-awesome/css/font-awesome.min.css';
+import 'element-ui/lib/theme-chalk/index.css';
+import '@/styles/index.scss';
+
 // 引入所有的公共组件
 import '@/components';
 
@@ -11,9 +20,7 @@ import router from '@/plugins/router';
 import store from '@/plugins/store';
 import inject from '@/plugins/inject';
 
-// 引入第三方组件库
-import ElementUI from 'element-ui';
-import 'element-ui/lib/theme-chalk/index.css';
+import i18n from '@/locale';
 
 import App from './App.vue';
 import './registerServiceWorker';
@@ -21,7 +28,10 @@ import './registerServiceWorker';
 Vue.config.productionTip = false;
 
 Vue.use(inject);
-Vue.use(ElementUI);
+Vue.use(ElementUI, {
+  size: 'medium',
+  i18n: (key: string, value: string) => i18n.t(key, value),
+});
 
 new Vue({
   router,
