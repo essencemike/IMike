@@ -13,3 +13,5 @@ Vue.component('EuiHamburger', () => import('@/components/EuiHamburger/index.vue'
 Vue.component('EuiBreadcrumb', () => import('@/components/EuiBreadcrumb/index.vue'));
 Vue.component('EuiScreenfull', () => import('@/components/EuiScreenfull/index.vue'));
 Vue.component('EuiLangSelect', () => import('@/components/EuiLangSelect/index.vue'));
+Vue.component('EuiScrollPane', () => import('@/components/EuiScrollPane/index.vue'));
+Vue.component('EuiTag', () => import('@/components/EuiTag/index.vue'));

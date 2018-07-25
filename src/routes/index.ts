@@ -17,7 +17,7 @@ export const appRouter = [
     component: Layout,
     children: [
       {
-        path: '',
+        path: '/',
         name: 'home',
         component: () => import('@/views/Home.vue'),
         meta: { title: 'home', icon: 'fa-home' },
@@ -31,6 +31,60 @@ export const appRouter = [
       {
         path: '',
         name: 'about',
+        component: () => import('@/views/About.vue'),
+        meta: { title: 'about', icon: 'fa-exclamation-circle' },
+      },
+      {
+        path: '/1',
+        name: 'about1',
+        component: () => import('@/views/About.vue'),
+        meta: { title: 'about', icon: 'fa-exclamation-circle' },
+      },
+      {
+        path: '/2',
+        name: 'about2',
+        component: () => import('@/views/About.vue'),
+        meta: { title: 'about', icon: 'fa-exclamation-circle' },
+      },
+      {
+        path: '/3',
+        name: 'about3',
+        component: () => import('@/views/About.vue'),
+        meta: { title: 'about', icon: 'fa-exclamation-circle' },
+      },
+      {
+        path: '/4',
+        name: 'about4',
+        component: () => import('@/views/About.vue'),
+        meta: { title: 'about', icon: 'fa-exclamation-circle' },
+      },
+      {
+        path: '/5',
+        name: 'about5',
+        component: () => import('@/views/About.vue'),
+        meta: { title: 'about', icon: 'fa-exclamation-circle' },
+      },
+      {
+        path: '/6',
+        name: 'about6',
+        component: () => import('@/views/About.vue'),
+        meta: { title: 'about', icon: 'fa-exclamation-circle' },
+      },
+      {
+        path: '/7',
+        name: 'about7',
+        component: () => import('@/views/About.vue'),
+        meta: { title: 'about', icon: 'fa-exclamation-circle' },
+      },
+      {
+        path: '/8',
+        name: 'about8',
+        component: () => import('@/views/About.vue'),
+        meta: { title: 'about', icon: 'fa-exclamation-circle' },
+      },
+      {
+        path: '/9',
+        name: 'about9',
         component: () => import('@/views/About.vue'),
         meta: { title: 'about', icon: 'fa-exclamation-circle' },
       },
