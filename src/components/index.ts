@@ -9,3 +9,7 @@ import Vue from 'vue';
  */
 Vue.component('HelloWorld', () => import('@/components/HelloWorld/index.vue'));
 Vue.component('EuiEditor', () => import('@/components/EuiEditor/index.vue'));
+Vue.component('EuiHamburger', () => import('@/components/EuiHamburger/index.vue'));
+Vue.component('EuiBreadcrumb', () => import('@/components/EuiBreadcrumb/index.vue'));
+Vue.component('EuiScreenfull', () => import('@/components/EuiScreenfull/index.vue'));
+Vue.component('EuiLangSelect', () => import('@/components/EuiLangSelect/index.vue'));

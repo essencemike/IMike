@@ -1,57 +1,42 @@
 <template lang="pug">
 .tags-wrapper
   router-link.tags-view(
-    v-for="(tag, index) in Array.from(lastedVisitedViews)",
-    :key="index",
+    v-for="tag in Array.from(visitedViews)",
+    :key="tag.path",
     :to="tag.path"
   )
     el-tag(
       :closeable="true",
       :type="isActive(tag.path) ? 'primary' : ''",
-      @close.prevent="closeViewTabs(tag)"
-    ) {{ tag.meta.label }}
+    ) {{ generateTitle(tag.meta.title) }}
 </template>
 <script lang="ts">
 import { Component, Vue, Watch } from 'vue-property-decorator';
 import { Getter, Action } from 'vuex-class';
 import { RouteConfig } from 'vue-router';
+import { mixins as Mixins } from 'vue-class-component';
 import { ADD_VISITED_VIEWS, DEL_VISITED_VIEWS } from '@/constants';
+import { RouterTitleMixin } from '@/mixins';
 
 @Component
-export default class TagsView extends Vue {
-  @Getter('visitedViews') visitedViews!: any[];
+export default class TagsView extends Mixins(RouterTitleMixin) {
+  @Getter('visitedViews') visitedViews!: any;
   @Action(ADD_VISITED_VIEWS) ADD_VISITED_VIEWS: any;
   @Action(DEL_VISITED_VIEWS) DEL_VISITED_VIEWS: any;
 
-  get lastedVisitedViews() {
-    return this.visitedViews.slice(-6);
-  }
-
-  async closeViewTabs(view: RouteConfig) {
-    const views = await this.DEL_VISITED_VIEWS(view);
-    if (this.isActive(view.path)) {
-      const latestView = views.slice(-1)[0];
-      if (latestView) {
-        this.$router.push(latestView.path);
-      } else {
-        this.$router.push('/');
-      }
-    }
-  }
-
   generateRoute() {
-    const lastMatched = this.$route.matched[this.$route.matched.length - 1];
-    if (lastMatched.meta.label) {
-      return lastMatched;
+    if (this.$route.name) {
+      return this.$route;
     }
-
-    this.$route.matched[0].path = '/';
-    return this.$route.matched[0];
+    return false;
   }
 
   @Watch('$route')
-  async addViewTabs() {
-    await this.ADD_VISITED_VIEWS(this.generateRoute());
+  addViewTabs() {
+    const route = this.generateRoute();
+    if (route) {
+      this.ADD_VISITED_VIEWS(route);
+    }
   }
 
   isActive(path: string) {

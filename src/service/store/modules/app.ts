@@ -33,7 +33,8 @@ const mutations: MutationTree<AppState> = {
   },
   [TYPES.ADD_VISITED_VIEWS](state: AppState, view: RouteConfig) {
     if (state.visitedViews.some((v) => v.path === view.path)) return;
-    state.visitedViews.push({ name: view.name, path: view.path });
+
+    state.visitedViews.push(view);
   },
   [TYPES.DEL_VISITED_VIEWS](state: AppState, view: RouteConfig) {
     const index = state.visitedViews.findIndex((v) => v.path === view.path);

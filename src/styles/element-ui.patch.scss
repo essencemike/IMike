@@ -1,10 +1,13 @@
 @import 'variables';
 
-/*------------scrollbar --------------*/
+/*---------el-scroll------------*/
 .scrollbar-wrapper {
-  overflow-x: hidden !important;
+  + .is-horizontal {
+    display: none;
+  }
 
-  .el-scrollbar__view {
-    height: 100%;
+  // reset element-ui transition
+  .horizontal-collapse-transition {
+    transition: 0s width ease-in-out, 0s padding-left ease-in-out, 0s padding-right ease-in-out;
   }
 }
