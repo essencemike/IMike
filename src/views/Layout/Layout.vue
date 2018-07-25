@@ -1,12 +1,12 @@
 <template lang="pug">
-  el-container.app-wrapper(:class="{ hideSidebar: !sidebar.opened }")
-    el-aside.app-aside-wrapper(width="200px")
+  el-container.app-wrapper
+    el-aside.app-aside-wrapper(:width="sideWidth")
       sidebar
     el-container
       el-header.app-header
         navbar
       tags-view
-      el-main.no-pad
+      el-main.app-main-wrapper
         app-main
 </template>
 <script lang="ts">
@@ -24,6 +24,10 @@ import { Navbar, Sidebar, AppMain, TagsView } from './components';
 })
 export default class Layout extends Vue {
   @Getter('sidebar') sidebar: any;
+
+  get sideWidth() {
+    return this.sidebar.opened ? '200px' : '64px';
+  }
 }
 </script>
 
@@ -46,6 +50,12 @@ export default class Layout extends Vue {
 
   .app-aside-wrapper {
     background-color: $aside-bg-color;
+    transition: width 0.38s;
+  }
+
+  .app-main-wrapper {
+    overflow-x: hidden;
+    padding: 0;
   }
 }
 </style>

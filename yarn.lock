@@ -715,6 +715,10 @@
   dependencies:
     parchment "^1.1.2"
 
+"@types/screenfull@^3.3.1":
+  version "3.3.1"
+  resolved "http://npm.venus-bdlab.com/@types%2fscreenfull/-/screenfull-3.3.1.tgz#9d9919025c47327c6012110ebd7880cae9e0913e"
+
 "@types/strip-bom@^3.0.0":
   version "3.0.0"
   resolved "http://npm.venus-bdlab.com/@types%2fstrip-bom/-/strip-bom-3.0.0.tgz#14a8ec3956c2e81edb7520790aecf21c290aebd2"
@@ -7309,6 +7313,10 @@ schema-utils@^0.4.0, schema-utils@^0.4.2, schema-utils@^0.4.3, schema-utils@^0.4
   dependencies:
     ajv "^6.1.0"
     ajv-keywords "^3.1.0"
+
+screenfull@^3.3.2:
+  version "3.3.2"
+  resolved "http://npm.venus-bdlab.com/screenfull/-/screenfull-3.3.2.tgz#a6adf3b3f5556da812725385880600f5b39fbf25"
 
 scss-tokenizer@^0.2.3:
   version "0.2.3"

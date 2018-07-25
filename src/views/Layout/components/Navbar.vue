@@ -1,17 +1,40 @@
 <template lang="pug">
-div navbar
+.app-navbar
+  eui-hamburger.hamburger-container(:isActive="sidebar.opened", @icon-click="toggleSidebar")
+  eui-breadcrumb.breadcrumb-container
+  .right-navbar
+    eui-screenfull
+    eui-lang-select.lang-container
 </template>
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
+import { Getter, Action } from 'vuex-class';
+import { TOGGLE_SIDEBAR } from '@/constants';
 
 @Component
-export default class Navbar extends Vue {}
+export default class Navbar extends Vue {
+  @Getter('sidebar') sidebar: any;
+
+  @Action(TOGGLE_SIDEBAR) TOGGLE_SIDEBAR: any;
+
+  toggleSidebar() {
+    this.TOGGLE_SIDEBAR();
+  }
+}
 </script>
 <style lang="scss" scoped>
-.app-header {
-  background-color: #fff;
-  box-shadow: 0 2px 1px 1px rgba(100, 100, 100, .1);
+.app-navbar {
   position: relative;
-  z-index: 11;
+  display: flex;
+  height: 100%;
+  align-items: center;
+
+  .right-navbar {
+    margin-left: auto;
+  }
+
+  .lang-container {
+    margin-left: 20px;
+  }
 }
 </style>
