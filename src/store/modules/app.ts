@@ -2,6 +2,7 @@ import Cookies from 'js-cookie';
 import { RouteConfig } from 'vue-router';
 import { GetterTree, MutationTree, ActionTree } from 'vuex';
 import * as TYPES from '@/constants';
+import { appRouter } from '@/routes';
 
 interface AppState {
   sidebar: any;
@@ -14,7 +15,7 @@ const appState: AppState = {
   sidebar: {
     opened,
   },
-  visitedViews: [],
+  visitedViews: [appRouter[0].children[0]],
 };
 
 const getters: GetterTree<AppState, any> = {
@@ -40,6 +41,12 @@ const mutations: MutationTree<AppState> = {
     const index = state.visitedViews.findIndex((v) => v.path === view.path);
     state.visitedViews.splice(index, 1);
   },
+  [TYPES.CLEAR_OTHERS_VIEWS](state: AppState, view: RouteConfig) {
+    state.visitedViews = [appRouter[0].children[0], view];
+  },
+  [TYPES.CLEAR_ALL_VIEWS](state: AppState) {
+    state.visitedViews = [appRouter[0].children[0]];
+  },
 };
 
 const actions: ActionTree<AppState, any> = {
@@ -49,6 +56,20 @@ const actions: ActionTree<AppState, any> = {
 
   [TYPES.ADD_VISITED_VIEWS]({ commit }, view) {
     commit(TYPES.ADD_VISITED_VIEWS, view);
+  },
+
+  [TYPES.CLEAR_OTHERS_VIEWS]({ commit }, view) {
+    return new Promise((resolve) => {
+      commit(TYPES.CLEAR_OTHERS_VIEWS, view);
+      resolve();
+    });
+  },
+
+  [TYPES.CLEAR_ALL_VIEWS]({ commit }) {
+    return new Promise((resolve) => {
+      commit(TYPES.CLEAR_ALL_VIEWS);
+      resolve();
+    });
   },
 
   [TYPES.DEL_VISITED_VIEWS]({ commit, state }, view) {
