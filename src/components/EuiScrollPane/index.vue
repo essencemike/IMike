@@ -54,8 +54,25 @@ export default class EuiScrollPane extends Vue {
     }
   }
 
+  moveToPosition(offset: number) {
+    this.left = offset;
+  }
+
   moveToLeft() {
     this.left = 0;
+  }
+
+  moveToRight() {
+    const $container = this.$refs.scrollContainer as HTMLElement;
+    const $containerWidth = $container.offsetWidth;
+    const $wrapper = this.$refs.scrollWrapper as HTMLElement;
+    const $wrapperWidth = $wrapper.offsetWidth;
+
+    if ($containerWidth - PADDING < $wrapperWidth) {
+      this.left = -($wrapperWidth - $containerWidth + PADDING);
+    } else {
+      this.left = 0;
+    }
   }
 }
 </script>

@@ -27,6 +27,8 @@ export const CHANGE_ROLE = 'CHANGE_ROLE';
 
 // app actions constants
 export const TOGGLE_SIDEBAR = 'TOGGLE_SIDEBAR';
+export const SET_LANGUAGE = 'SET_LANGUAGE';
+
 export const ADD_VISITED_VIEWS = 'ADD_VISITED_VIEWS';
 export const DEL_VISITED_VIEWS = 'DEL_VISITED_VIEWS';
 export const CLEAR_ALL_VIEWS = 'CLEAR_ALL_VIEWS';

@@ -15,6 +15,9 @@ import '@/components';
 // 引入所有的公共指令
 import '@/directives';
 
+// 引入所有的公共过滤器
+import '@/filters';
+
 // 引入插件
 import router from '@/plugins/router';
 import store from '@/plugins/store';

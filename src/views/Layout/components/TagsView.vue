@@ -1,5 +1,8 @@
 <template lang="pug">
 .tags-wrapper
+  .scroll-left-wrapper(@click="moveToLeft")
+    el-button.tag-operate(type="text")
+      i.fa.fa-angle-left
   .tags-container
     eui-scroll-pane(ref="scrollPane")
       router-link.tags-view(
@@ -13,14 +16,16 @@
           :color="isActive(tag) ? 'blue' : 'default'",
           @close="closeTag(tag)",
         ) {{ generateTitle(tag.meta.title) }}
+  .scroll-right-wrapper(@click="moveToRight")
+    el-button.tag-operate(type="text")
+      i.fa.fa-angle-right
   .tags-operate-wrapper
     el-dropdown(trigger="click", @command="handleTagOperate")
-      el-button(size="mini", type="primary")
-        | 标签选项
-        i.el-icon-caret-bottom.el-icon--right
+      el-button.tag-operate(type="text")
+        i.el-icon-circle-close-outline
       el-dropdown-menu(slot="dropdown")
-        el-dropdown-item(command="others") 关闭其他
-        el-dropdown-item(command="all") 关闭所有
+        el-dropdown-item(command="others") {{ $t('tags.others') }}
+        el-dropdown-item(command="all") {{ $t('tags.all') }}
 </template>
 <script lang="ts">
 import { Component, Vue, Watch } from 'vue-property-decorator';
@@ -79,6 +84,16 @@ export default class TagsView extends Mixins(RouterTitleMixin) {
     });
   }
 
+  moveToLeft() {
+    const scrollPane = this.$refs.scrollPane as any;
+    scrollPane.moveToLeft();
+  }
+
+  moveToRight() {
+    const scrollPane = this.$refs.scrollPane as any;
+    scrollPane.moveToRight();
+  }
+
   async closeTag(tag: RouteConfig) {
     const tags = await this.DEL_VISITED_VIEWS(tag);
 
@@ -100,7 +115,9 @@ export default class TagsView extends Mixins(RouterTitleMixin) {
       this.CLEAR_ALL_VIEWS();
     } else {
       const activeTag = this.visitedViews.find((item: any) => this.isActive(item));
-      activeTag && this.CLEAR_OTHERS_VIEWS(activeTag);
+      if (activeTag) {
+        this.CLEAR_OTHERS_VIEWS(activeTag);
+      }
     }
 
     this.$nextTick(() => {
@@ -123,8 +140,36 @@ export default class TagsView extends Mixins(RouterTitleMixin) {
     margin-left: 10px;
   }
 
+  .tag-operate {
+    color: #333;
+    font-size: 16px;
+  }
+
+  .scroll-left-wrapper,
+  .scroll-right-wrapper {
+    position: absolute;
+    height: 100%;
+    top: 0;
+    z-index: 10;
+    background: #fff;
+    padding: 4px 10px 0 10px;
+    box-sizing: border-box;
+    cursor: pointer;
+  }
+
+  .scroll-left-wrapper {
+    left: 0;
+    box-shadow: 3px 0 15px 3px rgba(0, 0, 0, 0.1);
+  }
+
+  .scroll-right-wrapper {
+    right: 32px;
+    box-shadow: -3px 0 15px 3px rgba(0, 0, 0, 0.1);
+  }
+
   .tags-container {
-    width: calc(100% - 110px);
+    margin-left: 28px;
+    width: calc(100% - 87.5px);
     height: 100%;
   }
 
@@ -132,11 +177,12 @@ export default class TagsView extends Mixins(RouterTitleMixin) {
     position: absolute;
     right: 0;
     top: 0;
-    width: 110px;
+    width: 32px;
     height: 100%;
-    padding: 8px 6px;
+    padding: 5px 8px;
+    border-left: 1px solid #f5f5f5;
     background: #fff;
-    box-shadow: -3px 0 15px 3px rgba(0, 0, 0, 0.1);
+    // box-shadow: -3px 0 15px 3px rgba(0, 0, 0, 0.1);
     z-index: 10;
     box-sizing: border-box;
   }
