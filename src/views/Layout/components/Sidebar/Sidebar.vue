@@ -8,6 +8,7 @@ el-scrollbar(wrapClass="scrollbar-wrapper")
     background-color="#545c64",
     text-color="#fff",
     active-text-color="#ffd04b",
+    @select="handleSelect",
   )
     sidebar-item(
       v-for="route in routes",
@@ -32,6 +33,13 @@ export default class Sidebar extends Vue {
 
   get isCollapse() {
     return !this.sidebar.opened;
+  }
+
+  handleSelect(name: string) {
+    if (name.indexOf('isTurnByHref__') > -1) {
+      window.open(name.split('__')[1]);
+      return;
+    }
   }
 }
 </script>

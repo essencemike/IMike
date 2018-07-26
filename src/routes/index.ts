@@ -1,5 +1,15 @@
 /**
- * 这里配置所有的路由信息
+ * 在这里配置路由信息
+ * 路由中 meta 除了原生参数外可配置的参数:
+ * meta: {
+ *  hideInMenu: (false) 设为true后在左侧菜单不会显示该页面选项
+ *  title: '' i18n 国际化
+ *  alwaysShow: (false) 设为true后，无论children有几个都显示父页面，设为false后，只有children大于1个的时候才显示父页面
+ *  notCache: (false) 设为true后页面不会缓存
+ *  access: (null) 可访问该页面的权限数组，当前路由设置的权限会影响子路由
+ *  icon: (-) 该页面在左侧菜单、面包屑和标签导航处显示的图标，如果是自定义图标，需要在图标名称前加下划线'_'
+ *  href: '' 设置此链接后，点击将打开新的页面
+ * }
  */
 import Layout from '@/views/Layout/Layout.vue';
 
@@ -10,7 +20,8 @@ export const login = {
   component: () => import('@/views/Login/Login.vue'),
 };
 
-// 作为 Layout 组件的子页面展示并且在左侧菜单显示的路由写在 appRouter 里
+// 作为 Layout 组件的子页面展示
+// 第一个要是 root 路由， 面包屑中用到
 export const appRouter = [
   {
     path: '/',
@@ -27,6 +38,10 @@ export const appRouter = [
   {
     path: '/adout',
     component: Layout,
+    meta: {
+      title: 'about',
+      icon: 'fa-exclamation-circle',
+    },
     children: [
       {
         path: '',
@@ -91,9 +106,6 @@ export const appRouter = [
     ],
   },
 ];
-
-// 作为 Layout 组件的子页面展示但是不在左侧菜单显示的路由写在 otherRouter 里
-export const otherRouter = {};
 
 export default [
   ...appRouter,

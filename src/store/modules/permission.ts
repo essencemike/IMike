@@ -3,7 +3,7 @@ import { GetterTree, MutationTree, ActionTree } from 'vuex';
 import * as TYPES from '@/constants';
 import { appRouter } from '@/routes';
 
-interface PermissionState {
+export interface PermissionState {
   routes: RouteConfig[];
   addRouters: RouteConfig[];
 }
@@ -28,7 +28,7 @@ const mutations: MutationTree<PermissionState> = {
 const actions: ActionTree<PermissionState, any> = {
   [TYPES.GENERATE_ROUTES]({ commit }, data) {
     return new Promise((resolve) => {
-      // TODO: 生成有权限的 route
+      // TODO 生成有权限的 route
       commit(TYPES.SET_ROUTERS, data);
       resolve();
     });

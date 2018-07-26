@@ -11,3 +11,18 @@
     transition: 0s width ease-in-out, 0s padding-left ease-in-out, 0s padding-right ease-in-out;
   }
 }
+
+/*--------el-menu----------------*/
+.el-menu {
+  [class^=fa] {
+    vertical-align: middle;
+    margin-right: 5px;
+    width: 24px;
+    text-align: center;
+    font-size: 18px;
+  }
+
+  a {
+    text-decoration: none;
+  }
+}

@@ -8,21 +8,19 @@ el-dropdown(trigger="click", @command="handleSetLanguage")
 </template>
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
+import { Getter, Action } from 'vuex-class';
+import { SET_LANGUAGE } from '@/constants';
 import Cookies from 'js-cookie';
 
 @Component
 export default class EuiLangSelect extends Vue {
-  get language() {
-    const navLang = navigator.language;
-    const localLang = (navLang === 'zh' || navLang === 'en') ? navLang : false;
-    const lang = Cookies.get('language') || localLang || 'zh';
-    return lang;
-  }
+  @Getter('language') language!: string;
+
+  @Action(SET_LANGUAGE) SET_LANGUAGE: any;
 
   handleSetLanguage(lang: string) {
     this.$i18n.locale = lang;
-    // TODO 修改成 store 里面去
-    Cookies.set('language', lang);
+    this.SET_LANGUAGE(lang);
   }
 }
 </script>

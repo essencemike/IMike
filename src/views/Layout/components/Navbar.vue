@@ -5,6 +5,13 @@
   .right-navbar
     eui-screenfull
     eui-lang-select.lang-container
+    el-dropdown.user-container(trigger="click", @command="handleUserOperate")
+      span.el-dropdown-link
+        | admin
+        i.el-icon-caret-bottom
+      el-dropdown-menu(slot="dropdown")
+        el-dropdown-item(command="profile") {{ $t('app.profile') }}
+        el-dropdown-item(command="logout") {{ $t('app.logout') }}
 </template>
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
@@ -20,6 +27,8 @@ export default class Navbar extends Vue {
   toggleSidebar() {
     this.TOGGLE_SIDEBAR();
   }
+
+  handleUserOperate() {}
 }
 </script>
 <style lang="scss" scoped>
@@ -33,8 +42,13 @@ export default class Navbar extends Vue {
     margin-left: auto;
   }
 
-  .lang-container {
+  .lang-container,
+  .user-container {
     margin-left: 20px;
+  }
+
+  .el-dropdown-link {
+    cursor: pointer;
   }
 }
 </style>
